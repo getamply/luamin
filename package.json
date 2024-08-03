@@ -5,6 +5,7 @@
 	"homepage": "https://mths.be/luamin",
 	"main": "luamin.js",
 	"bin": "bin/luamin",
+	"type": "module",
 	"keywords": [
 		"lua",
 		"minify",
