@@ -36,7 +36,6 @@
 		"test": "node tests/tests.js"
 	},
 	"dependencies": {
-		"luaparse": "link:vendor/luaparse"
 	},
 	"devDependencies": {
 		"grunt": "^0.4.4",
