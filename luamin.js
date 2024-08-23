@@ -150,6 +150,11 @@ export default function Luamin(luaparse) {
 	};
 
 	// http://www.lua.org/manual/5.2/manual.html#3.1
+	/**
+	 *
+	 * @param {string} id
+	 * @returns {boolean}
+	 */
 	function isKeyword(id) {
 		switch (id.length) {
 			case 2:
@@ -173,13 +178,19 @@ export default function Luamin(luaparse) {
 			case 8:
 				return "function" == id;
 		}
-		return false;
+		return id.startsWith('$');
 	}
 
 	var currentIdentifier;
 	var identifierMap;
 	var identifiersInUse;
-	var generateIdentifier = function (originalName) {
+
+	/**
+	 *
+	 * @param {string} originalName
+	 * @returns {string}
+	 */
+	function generateIdentifier(originalName) {
 		// Preserve `self` in methods
 		if (originalName == "self") {
 			return originalName;
@@ -230,6 +241,8 @@ export default function Luamin(luaparse) {
 		if (lastCharA == "" || firstCharB == "") {
 			return a + b;
 		}
+
+		if (firstCharB.startsWith('$')) return a + separator + b;
 		if (regexAlphaUnderscore.test(lastCharA)) {
 			if (regexAlphaNumUnderscore.test(firstCharB)) {
 				// e.g. `while` + `1`
